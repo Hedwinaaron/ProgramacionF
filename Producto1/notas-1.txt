@@ -1,0 +1,60 @@
+﻿% Ejemplo de documento LaTeX
+% Tipo de documento y tamaño de letra
+\documentclass[12pt]{article}
+
+
+% Preparando para documento en Español.
+% Para documento en Inglés no hay que hacer esto.
+\usepackage[spanish]{babel}
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+
+
+% EL titulo, autor y fecha del documento
+\title{Tutorial breve de los comandos de Bash}
+\author{Linus Torsvald}
+\date{6 de Frbrero de 2015}
+
+
+% Aqui comienza el cuerpo del documento
+\begin{document}
+% Construye el título
+\maketitle
+
+
+\section{¿Qué es {\tt bash}?}
+
+
+Bash es un interpretador de comandos utilizado sobre el sistema operativo Linux.
+Su función es de mediar entre el usuario y el sistema.
+
+
+\section{Husmeando en el sistema}
+
+
+Veremos algunos comandos:
+
+
+\begin{itemize}
+\item{pwd}.- Nos muestra el directorio donde nos encontramos actualmente
+\item{ls}.- Muestra la lista de archivos que contiene un directorio
+\item{cd}.-Este comando nos sirve para movernos a otro directorio.
+\item{file}O.-btener información sobre qué tipo de archivo, un archivo o directorio es.
+\item{ls -a}.- Listar el contenido de un directorio, incluyendo los archivos ocultos.
+\item{man <comando>}.-Busque la página del manual de un comando en particular.
+\item{man -k (término de búsqueda)}.- Haga una búsqueda por palabra clave para todas las páginas manuales que contienen el término de búsqueda.
+\item{mkdir}.- Crear un directorio.
+\item{rmdir}.-Eliminar un directorio.
+\item{touch}
+.-Crear un archivo en blanco.
+\item{cp}.- Copiar un archivo o directorio.
+\item{mv}.-Mover un archivo o directorio (también se puede utilizar para cambiar el nombre).
+\item{rm}.-Eliminar un archivo.
+\item{vi}.- Edición de un archivo.
+\item{cat}.-Ver un archivo.
+\item{less}.-Conveniente para la visualización de archivos de gran tamaño.
+\item{chmod}.-Cambiar los permisos de un archivo o directorio.
+\item{ls -ld}.-Ver los permisos de un directorio específico.
+\item{xkill}.-Útil para cerrar procesos que se estén llevando a cabo. El puntero tomara la forma de una x, en cualquier ventana donde se de clic se serrara.
+\end{itemize}
+\end{document}
