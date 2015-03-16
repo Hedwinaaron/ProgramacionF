@@ -1,0 +1,23 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with http://maxima-online.org ] */
+
+/* [wxMaxima: comment start ]
+This solution online http://maxima-online.org/?inc=r-1490875425
+   [wxMaxima: comment end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x):=sin(x);
+taylor(f(x),x,0,1);
+taylor(f(x),x,0,3);
+taylor(f(x),x,0,5);
+taylor(f(x),x,0,7);
+fortran(taylor(f(x),x,0,11));
+ fortran(taylor(f(x),x,0,3));
+fortran(taylor(f(x),x,0,5));
+fortran(taylor(f(x),x,0,7));
+tex(taylor(f(x),x,0,1));
+tex(taylor(f(x),x,0,3));
+tex(taylor(f(x),x,0,5));
+tex(taylor(f(x),x,0,7));
+plot2d([f(x),taylor(f(x),x,0,1),taylor(f(x),x,0,3),taylor(f(x),x,0,5),taylor(f(x),x,0,7)],[x,-5,5],[y,-5,5],[color,red,blue,green,black],[legend,F(x),T1,T3,T5,T7],[ylabel,f(x)]);
+/* [wxMaxima: input   end   ] */
