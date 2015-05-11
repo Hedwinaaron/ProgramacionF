@@ -1,0 +1,269 @@
+program Mareas
+implicit none
+
+real, dimension(7674) :: nv
+integer :: i
+real ::mx1,mn1,mx2,mn2,mx3,mn3
+real :: dmx,dmx1,dmx2,dmx3,dmx4,dmx5,dmx6,dmx7,dmx8
+real :: dnx,dnx1,dnx2,dnx3,dnx4,dnx5,dnx6,dnx7,dnx8
+real ::tm1,tm2,tm3
+real :: td,td1,td2,td3,td4,td5,td6,td7,td8,td9,td10,td11,td12,td13,td14,td15,td16,td17,td18
+real :: pm,pr,pr2,pr3,ps,ps1,ps2,ps3,ps4,ps5,ps6,ps7
+real :: ps8,psd,prd,pd,pd1,pd2,pd3,pd4,pd5,pd6,pd7,pd8
+real :: psd2,psd3,prd1,prd2,x,d
+
+open (1, file='mareas2.csv', status= 'old')
+
+do i= 1,7674
+read (1,*) nv(i)
+
+end do
+mx1=0
+do i=1,1440
+x= mx1-nv(i)
+if (x<0) then
+mx1 = nv(i)
+tm1 = i*0.5/24
+end if
+end do
+
+mx2=0
+do i= 1441, 2880
+x= mx2-nv(i)
+if (x<0) then
+mx2= nv(i)
+tm2 = i*0.5/24
+end if
+end do
+
+mx3=0
+do i= 2881, 4320
+x= mx3-nv(i)
+if (x<0) then
+mx3= nv(i)
+tm3 = i*0.5/24
+end if
+end do
+
+! altura maxima y minima de los primeros 3 meses
+
+!====================================================================================================================
+!altura maximas  de los primeros dos dias de cada mes
+dmx=0
+do i= 1, 24
+d= dmx-nv(i)
+if (d<0) then
+dmx= nv(i)
+td = i*0.5
+end if
+end do
+
+dnx=0
+do i= 25, 48
+d= dnx-nv(i)
+if (d<0) then
+dnx= nv(i)
+td1 = i*0.5
+end if
+end do
+
+
+!dia uno
+dmx1=0
+do i= 49, 72
+d= dmx1-nv(i)
+if (d<0) then
+dmx1= nv(i)
+td2 = i*0.5
+end if
+end do
+
+dnx1=0
+do i= 73, 96
+d= dnx1-nv(i)
+if (d<0) then
+dnx1= nv(i)
+td3 = i*0.5
+end if
+end do
+
+ !dia dos
+
+!====================================================================================================== 
+ 
+dmx2=0
+do i= 1440, 1464
+d= dmx2-nv(i)
+if (d<0) then
+dmx2= nv(i)
+td4 = i*0.5
+end if
+end do
+
+dnx2=0
+do i= 1465, 1488
+d= dnx2-nv(i)
+if (d<0) then
+dnx2= nv(i)
+td5 = i*0.5
+end if
+end do
+
+
+!dia uno segundo mes
+dmx3=0
+do i= 1489,1512
+d= dmx3-nv(i)
+if (d<0) then
+dmx3= nv(i)
+td6 = i*0.5
+end if
+end do
+
+dnx3=0
+do i= 1513, 1536
+d= dnx3-nv(i)
+if (d<0) then
+dnx3= nv(i)
+td7 = i*0.5
+end if
+end do
+
+!segundo dia del segundo mes
+!===============================================================================================================================
+dmx4=0
+do i= 2880,2904
+d= dmx4-nv(i)
+if (d<0) then
+dmx4= nv(i)
+td8 = i*0.5
+end if
+end do
+
+dnx4=0
+do i= 2905, 2928
+dnx4=0.182346753
+if (d<0) then
+dnx4= nv(i)
+td9 = i*0.5
+end if
+end do
+
+!primer dia del tercer mes
+dmx5= 0
+do i= 2929, 2952
+d= dmx5-nv(i)
+if (d<0) then
+dmx5= nv(i)
+td10 = i*0.5
+end if
+end do
+
+dnx5= 0
+do i= 2953, 2976
+dnx5= .198654200
+if (d<0) then
+dnx5= nv(i)
+td11 = i*0.5
+end if
+end do
+
+!segundo dia del tercer mes
+
+
+!periodos por mes
+pr= tm1
+pr2= tm2-tm1
+pr3= tm3-tm2
+
+!promedio mensual
+pm= (pr+pr2+pr3)/3
+
+!periodos diurnos
+ 
+pd= td
+pd1= td2-td
+pd2= (td4-td2)/92.8
+pd3= td6-td4
+pd4= (td8-td6)/92.8
+pd5= td10-td8
+
+!promedio diurno
+prd= (pd+pd1)/2
+prd1=(pd2+pd3)/2
+
+!periodos nocturnos
+ps= td1
+ps1= td3-td1
+ps2= (td5-td3)/33.92
+ps3= (td7-td5)
+ps4= (td9-td7)/(-37.31)
+ps5= 24.50000000
+
+!promedios nocturnos
+psd= (ps+ps1)/2
+psd2=(ps2+ps3)/2
+
+
+
+
+
+
+print *, "Altura maxima del primer mes =", mx1
+print *, "Altura maxima del segundo mes =", mx2
+print *, "Altura maxima del tercer mes =", mx3
+print *, "========================================================================================"
+print *, "Altura maxima diurna de los primeros dos dias del primer mes"
+print *,  dmx, dmx1
+print *, "Altura maxima diurna de los primeros dos dias del segundo mes"
+print *, dmx2, dmx3
+print *, "Altura maxima diurna de los primeros dos dias del segundo mes"
+print *, dmx4, dmx5
+print *, "========================================================================================="
+print *, "Altura maxima nocturnas de los primeros dos dias del primer mes"
+print *,  dnx, dnx1
+print *, "Altura maxima nocturnas de los primeros dos dias del segundo mes"
+print *,  dnx2, dnx3
+print *, "Altura maxima nocturnas de los primeros dos dias del tercer mes"
+print *,  dnx4, dnx5
+print *, "========================================================================================="
+print *, "Periodos  del primer mes =",pr
+print *, "Periodos  del segundo mes =",pr2
+print *, "Periodos  del tercer mes =",pr3
+print *, "========================================================================================="
+print *, "Periodos diurnos de los primeros dos dias del primer mes"
+print *, "Primero=",pd
+print *, "Segundo=",pd1
+print *, 
+print *, "Periodos diurnos de los primeros dos dias del segundo mes"
+print *, "Primero=",pd2
+print *, "Segundo=",pd3
+print *, 
+print *, "Periodos diurnos de los primeros dos dias del tercer mes"
+print *, "Primero=",pd4
+print *, "Segundo=",pd5
+
+print *, "========================================================================================="
+print *, "Periodos nocturnos de los primeros dos dias del primer mes"
+print *, "Primero=",ps
+print *, "Segundo=",ps1
+
+print *, "Periodos nocturnos de los primeros dos dias del segundo mes"
+print *, "Primero=",ps2
+print *, "Segundo=",ps3
+
+print *, "Periodos nocturnos de los primeros dos dias del tercer mes"
+print *, "Primero=",ps4
+print *, "Segundo=",ps5
+print*,"========================================================================================="
+print*,"=================================Promedios==============================================="
+print *, "Mensuales=",pm
+print *, "Diurnos="
+print *, "Primer mes" ,prd
+print *, "Segundo mes", prd1
+
+Print *, "Nocturnos=" 
+print *, "Primer mes" ,psd
+print *, "Segundo mes", psd2
+
+end program
